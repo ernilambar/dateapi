@@ -1,13 +1,10 @@
 <?php
 	error_reporting(0);
-	//showpre($_GET,'',true,false);
-	//die;
 	$dateType = 'en';
 	$dateFormat = $_GET['dateFormat'];
 	$dateLanguage = $_GET['dateLanguage'];
 	$showTime = ($_GET['showTime']=='true')?true:false;
-	$militaryTime = ($_GET['militaryTime']=='true')?true:false;
-	
+	$militaryTime = ($_GET['militaryTime']=='true')?true:false;	
 	//
 	date_default_timezone_set('Asia/Katmandu');
 	include('nepali_calendar.php');
@@ -15,8 +12,6 @@
 	$eflag=false;
 	//	
 	$date_arr=explode('-',date('Y-m-d'));
-	//	
-	//$eflag = true;
 	if(!$cal->is_range_eng($date_arr[0],$date_arr[1],$date_arr[2]) && !$eflag)
 	{
 		$ret_op['error']=1;
@@ -59,14 +54,11 @@
 	//
 	function convertToNepali($date)
 	{
-		//
 		$date['year']=getNepaliNumber($date['year']);
 		$date['month_name']=getMahina($date['month']);
 		$date['month']=getNepaliNumber($date['month']);
 		$date['day']=getBaar($date['num_day']);
-		$date['date']=getNepaliNumber($date['date']);
-		
-		//print_r($date);
+		$date['date']=getNepaliNumber($date['date']);				
 		return $date;
 	}
 	//////////////
@@ -97,40 +89,4 @@
 		return  ($ret);
 	}
 	//
-	/////////////////////////////////////////////
-	function showpre($str,$variable='',$die=false, $style = true,$html=false)
-		{
-			$o = '<pre';
-			if($style)$o.=' style="
-			border:1px solid red; background-color:#eee;margin:3px;height:auto; margin-left:3%; 
-			overflow:hidden; width:94%;padding:5px; color:#000; text-align:left;
-			white-space: pre-wrap;
-			white-space: -moz-pre-wrap !important;
-			word-wrap: break-word;
-			white-space: -o-pre-wrap;
-			white-space: -pre-wrap;"';
-			$o.='>';
-		if($variable!='')
-		{
-			$o.= '<p';
-			if($style) $o.= '  style="border-bottom:1px solid red; color:#f00;font-weight:bold;padding:2px; margin:0px; text-align:left;"';
-			$o.= '>'.$variable.'</p>';
-		}
-		if(!$html)
-		{
-			$o.= print_r($str,true);			
-		}
-		else
-		{
-			$o.= print_r(htmlentities($str),true);			
-		}
-		
-		$o.='</pre>';
-		echo  $o;
-		if($die) die;
-		return ;
-		}
-	///////////////////////////
-	//
-	
 ?>
