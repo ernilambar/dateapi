@@ -1,1 +1,1 @@
-hello dateapi
+Read ME : http://www.nilambar.net/2012/08/date-widget-show-today-nepali-date-easy.html
