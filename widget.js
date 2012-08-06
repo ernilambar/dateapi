@@ -1,6 +1,5 @@
 (function() {
   var jQuery;
-  //var serverFQDN = 'http://127.0.0.1/dateapi';
   var serverFQDN = 'http://nilambar.com.np/dateapi';
   var timeoutId, options, container;
 
@@ -90,7 +89,6 @@
 			if(options.showTime === true)
 			{
 				timestr +=' ';
-				//timestr +='<span id="time-' + options.widgetIdNH + '">' +data.time_hour+ ':'+ data.time_minute+'</span>';
 				timestr +='<span id="time-' + options.widgetIdNH + '"></span>';
 				timestr +=' ';				
 			}	
