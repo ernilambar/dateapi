@@ -16,6 +16,7 @@
 	options.showSeconds = (options.showSeconds === true || options.showSeconds === false)?options.showSeconds:false;
 	options.militaryTime = (options.militaryTime === true || options.militaryTime === false)?options.militaryTime:false;
 	options.showTimeBeforeDate = (options.showTimeBeforeDate === true || options.showTimeBeforeDate === false)?options.showTimeBeforeDate:false;
+	options.multiLine = (options.multiLine === true || options.multiLine === false)?options.multiLine:false;
 	//
 	options.widgetIdNH = (!options.widgetId)?'mywidget':options.widgetId;
 	options.widgetId = '#'+options.widgetIdNH;
@@ -82,7 +83,7 @@
 		}
 		else
 		{
-			output += '<p>';
+			output += '<div>';
 			//
 			//for Time
 			var timestr = '';
@@ -96,6 +97,10 @@
 			if(options.showTime === true && options.showTimeBeforeDate === true)
 			{
 				output += timestr;
+				if(options.multiLine === true)
+				{
+					output += '<br/>';
+				}
 			}
 			//for Date part
 			switch(options.dateFormat)
@@ -143,6 +148,10 @@
 			//////
 			if(options.showTime === true && options.showTimeBeforeDate === false )
 			{
+				if(options.multiLine === true)
+				{
+					output += '<br/>';
+				}
 				output += timestr;
 			}		
 			//
@@ -151,7 +160,7 @@
 				output +='<p style="font-size:11px;"><em>Powered by <a href="http://www.nilambar.net" target="_blank"><strong>nilambar.net</strong></a></em></p>';
 			}
 			//
-			output += '</p>'; 
+			output += '</div>'; 
 			
 		}
 		
