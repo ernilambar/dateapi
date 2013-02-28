@@ -52,4 +52,4 @@ DateJS.Widget({
 **For details** : [Click here](http://www.nilambar.net/2012/08/date-widget-show-today-nepali-date-easy.html)
 
 
-Thanks to Jonathan Julian for his example_javascript_widget using which I was able to make this widget. And also kudos to codeartsnepal for Nepali-English Date conversion PHP class.
+Thanks to [Jonathan Julian](https://github.com/jjulian) for his [example_javascript_widget](https://github.com/jjulian/example_javascript_widget) using which I was able to make this widget. And also kudos to codeartsnepal for [Nepali-English Date conversion PHP class](http://nepalidateconve.sourceforge.net/).
