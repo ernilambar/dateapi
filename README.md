@@ -15,13 +15,17 @@ DateJS (Date Widget) is a simple javascript widget to display today's Nepali dat
 Intalling this widget is very easy. You just need to copy given code and after customizing it, paste it to your web page. If you are using any CMS or blogging service then paste it in Text/Html widget.
 
 ###Basic Installation
-  `<script src="http://nilambar.com.np/dateapi/widget.js"></script>     
+```{javascript tidy=FALSE}
+<script src="http://nilambar.com.np/dateapi/widget.js"/>     
   <script id="mywidget">    
-  DateJS.Widget();    
-  </script>`
+  DateJS.Widget();
+  </script>
+  ```
 
 ###Advanced Installation
-`<script src="http://nilambar.com.np/dateapi/widget.js"></script> 
+```{javascript tidy=FALSE}
+<script src="http://nilambar.com.np/dateapi/widget.js"/>  
+
 <script id="mydatewidget">
 DateJS.Widget({  
   dateLanguage : 'np',
@@ -29,6 +33,7 @@ DateJS.Widget({
   showPoweredBy : true,
   widgetId : 'mydatewidget'
 });
-</script>`
+</script>   
+```
 
 **For details** : [Click here](http://www.nilambar.net/2012/08/date-widget-show-today-nepali-date-easy.html)
