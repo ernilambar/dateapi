@@ -39,8 +39,10 @@ DateJS.Widget({
 
 | Property | Default | Description |
 | :--- | :---: | :--- |
-| **dateLanguage** | *np* | Language to display date. Either 'en' or 'np'. <br/>Example : <br/>np : १९ साउन २०६९, शुक्रबार <br/>en : 19 Shrawan 2069, Friday |
-| 1 | 2 | 3 |
+| **dateLanguage** | *'np'* | Language to display date. Either 'en' or 'np'. <br/>Example : <br/>np : १९ साउन २०६९, शुक्रबार <br/>en : 19 Shrawan 2069, Friday |
+| **dateFormat** | *6* | Integer value assigned for various date formats.<br/>Example: <br/>1 : १९ ०४ २०६९<br/>2 : २०६९ १९ ०४<br/>3 : २०६९ ०४ १९<br/>4 : १९ साउन २०६९<br/>5 : २०६९ साउन १९<br/>6 : १९ साउन २०६९, शुक्रबार<br/>7 : शुक्रबार, १९ साउन २०६९<br/>8 : २०६९ साउन १९, शुक्रबार<br/>9 : शुक्रबार, २०६९ साउन १९|
+|**widgetId**|*'mywidget'*|ID of the widget. If you are using single widget in a page then no need to set this option.<br/>For multiple widgets, assign different name to each script's ID and pass that in this parameter.|
+| **dateSeparator**|*' ' (space)*|Date separator. Default is space. You may use '-', '\', '/'.|
 
 
 **For details** : [Click here](http://www.nilambar.net/2012/08/date-widget-show-today-nepali-date-easy.html)
