@@ -1,4 +1,5 @@
 <?php
+	//Core file
 	error_reporting(0);
 	$dateType = 'en';
 	$dateFormat = $_GET['dateFormat'];
