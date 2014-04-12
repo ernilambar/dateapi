@@ -621,7 +621,7 @@
 			$yearShort = (int) $year % 100;
 
 			if( $month < 10 ) {
-				$month = ceil($month/10);
+				$month = (int) ceil( $month / 10 );
 			}
 			
 			return isset($this->_bs[$yearShort]) ? $this->_bs[$yearShort][$month] : null;			
@@ -634,12 +634,11 @@
 		 * @param  Date $date date whose day is to be calculated
 		 * @return Integer       total days upto the date
 		 */
-		 public function date_to_day($date) {		 	
+		public function date_to_day($date) {		 	
 	        @list($year, $month, $day) = explode('-', $date);
 	        	       
 	        $yearShort = (int) $year % 100;
-              
-	       
+              	       
 	        $current_year_days = $this->_bs[$yearShort];	      
 
 	        array_splice($current_year_days, $month);
