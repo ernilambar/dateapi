@@ -66,7 +66,7 @@
 			59 => array(2059,31,31,32,31,31,31,30,29,30,29,30,30),
 			60 => array(2060,31,31,32,32,31,30,30,29,30,29,30,30),
 			61 => array(2061,31,32,31,32,31,30,30,30,29,29,30,31),
-		    62 => array(2062,30,32,31,32,31,31,29,30,29,30,29,31),
+		    	62 => array(2062,30,32,31,32,31,31,29,30,29,30,29,31),
 			63 => array(2063,31,31,32,31,31,31,30,29,30,29,30,30),
 			64 => array(2064,31,31,32,32,31,30,30,29,30,29,30,30),
 			65 => array(2065,31,32,31,32,31,30,30,30,29,29,30,31),
@@ -635,17 +635,17 @@
 		 * @return Integer       total days upto the date
 		 */
 		public function date_to_day($date) {		 	
-	        @list($year, $month, $day) = explode('-', $date);
-	        	       
-	        $yearShort = (int) $year % 100;
-              	       
-	        $current_year_days = $this->_bs[$yearShort];	      
+			@list($year, $month, $day) = explode('-', $date);
+				       
+			$yearShort = (int) $year % 100;
+			  	       
+			$current_year_days = $this->_bs[$yearShort];	      
 
-	        array_splice($current_year_days, $month);
-	        $required_months = array_splice($current_year_days, 1);       
+			array_splice($current_year_days, $month);
+			$required_months = array_splice($current_year_days, 1);       
 
-	        return @array_sum($required_months) + $day;
-	    }
+			return @array_sum($required_months) + $day;
+		}
 
 	    /**
 	     * Get total days of a given year
@@ -660,9 +660,40 @@
 
 	        return array_sum($required_months);
 	    }
+
+      	  /**
+	   * Returns the total number of days between the given dates
+	   * @param  Date $start_date
+	   * @param  Date $end_date  
+	   * @return Integer             total number of days between start and end date
+	   */
+	    public function days_between($start_date, $end_date) {
+	       
+	        @list($sYear, $month, $day) = explode('-', $start_date);
+	        @list($eYear, $month, $day) = explode('-', $end_date);
+	 
+
+	        if( ($eYear - $sYear) == 0 ) {
+	            //same year
+	            return (self::date_to_day($end_date) - self::date_to_day($start_date) + 1);
+	        } else {
+	            //different year
+	            $startYearDays = self::total_days_in_year($sYear) - self::date_to_day($start_date);          
+	            $endYearDays = self::date_to_day($end_date);
+
+	            $days = $startYearDays + $endYearDays;
+	             for($i = $sYear + 1; $i < $eYear; $i++) {
+	                $days += self::total_days_in_year($i);
+	            }
+
+	            return abs($days);
+	        }
+	    }
+
 	}
 
 //  Example:
 //	$cal = new Nepali_Calendar();
 //	print_r ($cal->eng_to_nep(2008,11,23));
 //	print_r($cal->nep_to_eng(2065,8,8));
+//	print_r($cal->days_between(2070-01-12, 2072-12-12));
