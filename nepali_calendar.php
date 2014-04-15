@@ -518,14 +518,13 @@
 			$current_year_days = $this->_bs[$yearShort];	      
 
 			array_splice($current_year_days, $month);
-			$required_months = array_splice($current_year_days, 1);       
+			$required_months = array_splice($current_year_days, 1);
 
-
-	        if( !empty($required_months) && is_array($required_months) ) {
-	        	return array_sum($required_months) + $day;
-	        } else {
-	        	return $day;
-	        }
+			if( !empty($required_months) && is_array($required_months) ) {
+				return array_sum($required_months) + $day;
+			} else {
+				return $day;
+			}
 		}
 
 	    /**
@@ -535,7 +534,7 @@
 	     */
 	    public function total_days_in_year($year) {
 	    	if( $this->is_range_nep($year, 01, 01) === false ) {
-				return false;			
+				return false;
 			}
 
 	    	$yearShort = (int) $year % 100;
@@ -550,7 +549,7 @@
 	        }
 	    }
 
-		/**
+	/**
 	   * Returns the total number of days between the given dates
 	   * @param  Date $start_date
 	   * @param  Date $end_date  
@@ -560,12 +559,12 @@
 	       
 	        @list($sYear, $month, $day) = explode('-', $start_date);
 	        if( $this->is_range_nep($sYear, $month, $day) === false ) {
-				throw new Exception("Date out of range");			
+				throw new Exception("Date out of range");
 			}
 
 	        @list($eYear, $month, $day) = explode('-', $end_date);
 	        if( $this->is_range_nep($eYear, $month, $day) === false ) {
-				throw new Exception("Date out of range");			
+				throw new Exception("Date out of range");
 			}
 
 			if( $eYear < $sYear ) {
