@@ -644,7 +644,11 @@
 	        array_splice($current_year_days, $month);
 	        $required_months = array_splice($current_year_days, 1);       
 
-	        return @array_sum($required_months) + $day;
+	        if( !empty($required_months) && is_array($required_months) ) {
+	        	return array_sum($required_months) + $day;
+	        } else {
+	        	return $day;
+	        }
 	    }
 
 	    /**
@@ -658,7 +662,11 @@
 	    	$current_year_days = $this->_bs[$yearShort];	      
 	        $required_months = array_splice($current_year_days, 1);
 
-	        return array_sum($required_months);
+	        if( !empty($required_months) && is_array($required_months) ) {
+	        	return array_sum($required_months);
+	        } else {
+	        	return null;
+	        }
 	    }
 	}
 
