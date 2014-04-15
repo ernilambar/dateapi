@@ -534,7 +534,7 @@
 	     */
 	    public function total_days_in_year($year) {
 	    	if( $this->is_range_nep($year, 01, 01) === false ) {
-				return false;
+				throw new Exception("Date out of range");
 			}
 
 	    	$yearShort = (int) $year % 100;
