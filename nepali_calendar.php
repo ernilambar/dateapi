@@ -534,8 +534,8 @@
 	     */
 	    public function total_days_in_year($year) {
 	    	if( $this->is_range_nep($year, 01, 01) === false ) {
-				throw new Exception("Date out of range");
-			}
+			throw new Exception("Date out of range");
+		}
 
 	    	$yearShort = (int) $year % 100;
 
@@ -559,17 +559,17 @@
 	       
 	        @list($sYear, $month, $day) = explode('-', $start_date);
 	        if( $this->is_range_nep($sYear, $month, $day) === false ) {
-				throw new Exception("Date out of range");
-			}
+			throw new Exception("Date out of range");
+		}
 
 	        @list($eYear, $month, $day) = explode('-', $end_date);
 	        if( $this->is_range_nep($eYear, $month, $day) === false ) {
-				throw new Exception("Date out of range");
-			}
+			throw new Exception("Date out of range");
+		}
 
-			if( $eYear < $sYear ) {
-				throw new Exception("End year should be greater than the start year");
-			}
+		if( $eYear < $sYear ) {
+			throw new Exception("End year should be greater than the start year");
+		}
 
 	        if( ($eYear - $sYear) == 0 ) {
 	            //same year
