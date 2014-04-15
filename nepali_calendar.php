@@ -549,7 +549,7 @@
 	        }
 	    }
 
-	/**
+	  /**
 	   * Returns the total number of days between the given dates
 	   * @param  Date $start_date
 	   * @param  Date $end_date  
