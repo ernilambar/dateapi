@@ -487,5 +487,113 @@
 				return $err_arr;
 			}
 		}
-		
-	};
+
+		/**
+		 * Returns the total days in a particur month of a year
+		 * @param  Integer $year  
+		 * @param  Integer $month 
+		 * @return Integer        Total days in a month of a given year
+		 */
+		public function get_total_days_of($year, $month) {			
+			$yearShort = (int) $year % 100;			
+			
+			return isset($this->_bs[$yearShort]) ? $this->_bs[$yearShort][(int) $month] : null;			
+		}
+
+		/**
+		 * Convert date to days
+		 * Reference date is the start of the year
+		 * 
+		 * @param  Date $date date whose day is to be calculated
+		 * @return Integer       total days upto the date
+		 */
+		private function date_to_day($date) {		 	
+			@list($year, $month, $day) = explode('-', $date);
+			if( $this->is_range_nep($year, $month, $day) === false ) {
+				throw new Exception("Date out of range");			
+			}
+				       
+			$yearShort = (int) $year % 100;
+			  	       
+			$current_year_days = $this->_bs[$yearShort];	      
+
+			array_splice($current_year_days, $month);
+			$required_months = array_splice($current_year_days, 1);
+
+			if( !empty($required_months) && is_array($required_months) ) {
+				return array_sum($required_months) + $day;
+			} else {
+				return $day;
+			}
+		}
+
+	    /**
+	     * Get total days of a given year
+	     * @param  Integer $year
+	     * @return Integer       total days in a year
+	     */
+	    public function total_days_in_year($year) {
+	    	if( $this->is_range_nep($year, 01, 01) === false ) {
+			throw new Exception("Date out of range");
+		}
+
+	    	$yearShort = (int) $year % 100;
+
+	    	$current_year_days = $this->_bs[$yearShort];	      
+	        $required_months = array_splice($current_year_days, 1);
+
+	        if( !empty($required_months) && is_array($required_months) ) {
+	        	return array_sum($required_months);
+	        } else {
+	        	return null;
+	        }
+	    }
+
+	  /**
+	   * Returns the total number of days between the given dates
+	   * @param  Date $start_date
+	   * @param  Date $end_date  
+	   * @return Integer             total number of days between start and end date
+	   */
+	    public function days_between($start_date, $end_date) {
+	       
+	        @list($sYear, $month, $day) = explode('-', $start_date);
+	        if( $this->is_range_nep($sYear, $month, $day) === false ) {
+			throw new Exception("Date out of range");
+		}
+
+	        @list($eYear, $month, $day) = explode('-', $end_date);
+	        if( $this->is_range_nep($eYear, $month, $day) === false ) {
+			throw new Exception("Date out of range");
+		}
+
+		if( $eYear < $sYear ) {
+			throw new Exception("End year should be greater than the start year");
+		}
+
+	        if( ($eYear - $sYear) == 0 ) {
+	            //same year
+	            return (self::date_to_day($end_date) - self::date_to_day($start_date) + 1);
+	        } else {
+	            //different year
+	            $startYearDays = self::total_days_in_year($sYear) - self::date_to_day($start_date);          
+	            $endYearDays = self::date_to_day($end_date);
+
+	            $days = $startYearDays + $endYearDays;
+	             for($i = $sYear + 1; $i < $eYear; $i++) {
+	                $days += self::total_days_in_year($i);
+	            }
+
+	            return abs($days);
+	        }
+	    }
+
+	}
+
+//  Example:
+//	$cal = new Nepali_Calendar();
+//	print_r ($cal->eng_to_nep(2008,11,23));
+//	print_r($cal->nep_to_eng(2065,8,8));
+//	print_r($cal->get_total_days_of(2071, 02));
+//	print_r($cal->total_days_in_year(2071));
+//	print_r($cal->days_between('2070-01-12', '2072-12-12'));
